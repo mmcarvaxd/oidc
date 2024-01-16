@@ -525,13 +525,6 @@ class OidcUserManager {
       }
     }
 
-    final idTokenNonce = newUser
-        .parsedIdToken.claims[OidcConstants_AuthParameters.nonce] as String?;
-    if (nonce != null && idTokenNonce != nonce) {
-      _logAndThrow(
-        'Server returned a wrong id_token nonce, might be a replay attack.',
-      );
-    }
     return _validateAndSaveUser(newUser);
   }
 
